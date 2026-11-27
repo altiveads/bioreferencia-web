@@ -29,9 +29,3 @@ Tema oscuro/claro, ES/EN, animaciones suaves (respetan `prefers-reduced-motion`)
 
 ## Catálogo
 `data/catalogo.json` (1.415 exámenes de la API de BioReferencia) ya está incluido: genera 1.471 páginas de examen (con los 56 funcionales), el buscador y el sitemap. Para actualizarlo, reemplaza ese archivo con la respuesta de `https://bioreferencia.com/wp-json/brp/v1/examenes` y vuelve a desplegar.
-
-## Formularios (PQRSF)
-`/pqrsf/` usa Netlify Forms (sin backend). Tras el primer despliegue: Netlify → Forms → `pqrsf` → Notifications → agregar el correo de destino (experienciaymercadeo@bioreferencia.com). Activa también reCAPTCHA/Akismet si quieres más filtro de spam.
-
-## Menú y páginas nuevas
-Menú en `lib/nav.ts` (se edita en un solo lugar para ES/EN). Páginas: Servicios (Chequeos, Kit Wellness, Usuario Élite, Innovación y Desarrollo, Laboratorio de referencia), Pacientes (Resultados, Pagos, Convenios, FAQ, PQRSF), Nosotros (Quiénes somos, Trabaja con nosotros, Políticas). Los PDF de políticas están en `public/docs/politicas/`. El enlace de pago está en `lib/site.ts` (`SITE.pay`).

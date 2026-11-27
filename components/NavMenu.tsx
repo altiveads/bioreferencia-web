@@ -16,7 +16,6 @@ function Row({ it, i, act, on }: { it: NavItem; i: number; act?: boolean; on?: (
 
 export function NavMenu({ groups, active }: { groups: NavGroup[]; active: string }) {
   const [cur, setCur] = useState<string | null>(null);
-  const [svI, setSvI] = useState(0);
   const [hiKey, setHiKey] = useState<string | null>(null);
   const navRef = useRef<HTMLElement>(null), megaRef = useRef<HTMLDivElement>(null), hiRef = useRef<HTMLSpanElement>(null);
   const btns = useRef<Record<string, HTMLElement | null>>({}), panes = useRef<Record<string, HTMLElement | null>>({});
@@ -41,7 +40,7 @@ export function NavMenu({ groups, active }: { groups: NavGroup[]; active: string
   };
   const hide = (delay = 0) => { clearTimeout(t.current); t.current = setTimeout(() => { setOpen(false); setCur(null); moveHi(null); }, delay); };
 
-  useEffect(() => { if (cur) place(cur); }, [cur, svI]);
+  useEffect(() => { if (cur) place(cur); }, [cur]);
   useEffect(() => {
     const esc = (e: KeyboardEvent) => { if (e.key === 'Escape' && cur) { const b = btns.current[cur]; hide(); b?.focus(); } };
     const click = (e: MouseEvent) => { const n = e.target as HTMLElement; if (cur && !n.closest('#mega') && !n.closest('[data-nav]')) hide(); };
@@ -50,9 +49,6 @@ export function NavMenu({ groups, active }: { groups: NavGroup[]; active: string
     return () => { document.removeEventListener('keydown', esc); document.removeEventListener('click', click); window.removeEventListener('resize', rs); };
   });
   useEffect(() => { first.current = false; }, []);
-
-  const sv = groups.find((g) => g.key === 'servicios') as Group;
-  const fe = sv.items[svI];
 
   return (
     <>
@@ -74,12 +70,13 @@ export function NavMenu({ groups, active }: { groups: NavGroup[]; active: string
       <div id="mega" ref={megaRef} role="region" aria-label="Submenú" className={`mega${open ? ' open' : ''}`} onMouseEnter={() => clearTimeout(t.current)} onMouseLeave={() => hide(160)}>
         {groups.filter((g): g is Group => 'kind' in g).map((g) => (
           <section key={g.key} ref={(el) => { panes.current[g.key] = el; }} className={`pane${cur === g.key ? ' on' : ''}${cur && cur !== g.key && order.indexOf(g.key) < order.indexOf(cur) ? ' before' : ''}`}
-            style={{ width: g.kind === 'servicios' ? 720 : g.kind === 'pacientes' ? 700 : 400 }} aria-hidden={cur !== g.key}>
+            style={{ width: g.kind === 'servicios' ? 660 : g.kind === 'pacientes' ? 700 : 400 }} aria-hidden={cur !== g.key}>
             {g.kind === 'servicios' && (
-              <div className="flex gap-5">
-                <div className="stg min-w-0 flex-1"><div className="eyebrow">{g.eyebrow}</div>
-                  {g.items.map((it, i) => <Row key={it.href} it={it} i={i + 1} act={i === svI} on={() => setSvI(i)} />)}</div>
-                <div className="fe" key={svI}><h4>{fe.label}</h4><p>{fe.desc}</p><span className="go">→</span></div>
+              <div className="stg">
+                <div className="eyebrow">{g.eyebrow}</div>
+                <div className="grid grid-cols-2 gap-x-2 gap-y-1">
+                  {g.items.map((it, i) => <Row key={it.href} it={it} i={i + 1} />)}
+                </div>
               </div>
             )}
             {g.kind === 'pacientes' && (

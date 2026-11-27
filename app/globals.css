@@ -123,3 +123,17 @@ a.card:hover, li.card:hover { transform: translateY(-4px); box-shadow: 0 14px 34
 .acc .ab>div{overflow:hidden}
 .acc .ab .mi{padding:10px 4px}
 @media (prefers-reduced-motion:reduce){.pane,.mega,.nav-hi,.sheet{transition:none!important}.fe::before{animation:none}}
+
+/* ---------- Historia con scroll (Usuario Élite) ---------- */
+.story-item{position:relative;padding:2.2rem 0;transition:opacity .6s ease,transform .7s cubic-bezier(.2,.8,.2,1)}
+.story-item .story-n{display:block;font-size:clamp(3.2rem,9vw,5.5rem);line-height:1;font-weight:600;letter-spacing:-.04em;color:rgb(var(--c-primary)/.55);margin-bottom:.6rem;transition:color .5s}
+.story-item.on:not(.seen){opacity:0;transform:translateY(34px)}
+.story-item.active .story-n{color:rgb(var(--c-primary))}
+@media (min-width:1024px){
+  .story-item{min-height:62vh;display:flex;flex-direction:column;justify-content:center;padding:3rem 0 3rem 3rem;border-left:1px solid rgb(var(--c-outlinev)/.5)}
+  .story-item.on{opacity:.6}
+  .story-item.on.active{opacity:1;border-left-color:rgb(var(--c-primary))}
+  .story-item.on:not(.seen){transform:none}
+  .story-item:first-child{min-height:50vh}
+}
+@media (prefers-reduced-motion:reduce){.story-item{transition:none!important}.story-item.on:not(.seen){opacity:1;transform:none}.story-item.on{opacity:1}}

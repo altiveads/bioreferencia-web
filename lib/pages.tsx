@@ -5,6 +5,7 @@ import { Faq } from '@/components/Faq';
 import { Json } from '@/components/Json';
 import { Crumbs } from '@/components/Crumbs';
 import { ExamSearch } from '@/components/ExamSearch';
+import { ScrollStory } from '@/components/ScrollStory';
 import { SITE, waLink, type Lang } from './site';
 import { T } from './i18n';
 import { SEDES, CONVENIOS, FAQS, DOM_STEPS, REF_STEPS, PROCESSING, SOON_SEDE, mapsUrl, type Sede } from './data';
@@ -455,9 +456,7 @@ export function Elite({ lang }: { lang: Lang }) {
   return (
     <>
       <Crumbs lang={lang} items={[{ name: t.h1, href: '/usuario-elite/' }]} />
-      <section className="container-x py-10"><h1 className="h1">{t.h1}</h1><p className="lead mt-4 max-w-3xl">{t.sub}</p>
-        <ul className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">{t.items.map(([a, b]) => <li key={a} className="card p-6"><I.Check size={22} className="text-primary" aria-hidden /><h2 className="mt-3 text-xl font-medium">{a}</h2><p className="mt-2 text-sm text-on-variant">{b}</p></li>)}</ul>
-        <p className="mt-4 text-sm text-on-variant">* {t.tyc}</p><div className="mt-8"><WaButton lang={lang} msg={t.msg} label={t.cta} place="elite_hero" sub={false} /></div></section>
+      <ScrollStory title={t.h1} sub={t.sub} items={t.items as unknown as string[][]} note={t.tyc} cta={<WaButton lang={lang} msg={t.msg} label={t.cta} place="elite_hero" sub={false} />} />
     </>
   );
 }
