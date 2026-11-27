@@ -60,3 +60,15 @@ a.card:hover, li.card:hover { transform: translateY(-4px); box-shadow: 0 14px 34
 /* aparición al hacer scroll (solo si hay JS; fallback sin JS = visible) */
 .js [data-reveal] { opacity: 0; transform: translateY(22px); transition: opacity .6s ease, transform .6s cubic-bezier(.2,.7,.2,1); transition-delay: var(--d, 0ms); }
 .js [data-reveal].in { opacity: 1; transform: none; }
+
+/* Sede próximamente */
+.soon-card{filter:grayscale(1);opacity:.78;border-style:dashed}
+.soon-media{position:relative;overflow:hidden;background:rgb(var(--c-surface-high))}
+.soon-media::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgb(var(--c-on-surface)/.12) 50%,transparent 70%);transform:translateX(-100%);animation:soon-shimmer 2.8s ease-in-out infinite}
+.soon-pin{color:rgb(var(--c-on-variant));animation:soon-bob 2.4s ease-in-out infinite}
+.soon-badge{display:inline-flex;align-items:center;gap:.4rem;border-radius:9999px;border:1px solid rgb(var(--c-outline-variant));padding:.15rem .7rem;font-size:.75rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:rgb(var(--c-on-variant))}
+.soon-badge::before{content:"";width:.45rem;height:.45rem;border-radius:9999px;background:currentColor;animation:soon-pulse 1.6s ease-in-out infinite}
+@keyframes soon-shimmer{to{transform:translateX(100%)}}
+@keyframes soon-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes soon-pulse{0%,100%{opacity:1}50%{opacity:.25}}
+@media (prefers-reduced-motion:reduce){.soon-media::after,.soon-pin,.soon-badge::before{animation:none}}

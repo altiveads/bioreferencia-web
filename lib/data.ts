@@ -16,6 +16,7 @@ export const SEDES: Sede[] = [
   { slug: 'llanogrande', name: 'Llanogrande', city: 'Rionegro', addr: 'Clínica Llanogrande, Local 9, Vereda Chipre', place: { es: 'Rionegro · Antioquia', en: 'Rionegro · Antioquia' },
     hours: { es: ['Lun–Sáb 7:00 am – 11:00 am'], en: ['Mon–Sat 7:00 am – 11:00 am'] }, coords: '6.132101,-75.395633', img: '/img/sedes/llanogrande.webp' },
 ];
+export const SOON_SEDE = { name: 'Pereira', city: 'Risaralda', label: { es: 'Próximamente', en: 'Coming soon' }, text: { es: 'Muy pronto abrimos nuestra sede en Pereira.', en: 'Our Pereira site is opening soon.' }, note: { es: 'Escríbenos y te avisamos cuando abra', en: 'Message us and we will let you know when it opens' } };
 export const PROCESSING = { es: 'Sede de procesamiento: Cra. 48 #32B Sur-30, Clínica Nova, piso 4, Envigado', en: 'Processing site: Cra. 48 #32B Sur-30, Clínica Nova, 4th floor, Envigado' };
 export const mapsUrl = (s: Sede) => `https://www.google.com/maps/search/?api=1&query=${s.coords}`;
 

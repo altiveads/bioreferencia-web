@@ -7,7 +7,7 @@ import { Crumbs } from '@/components/Crumbs';
 import { ExamSearch } from '@/components/ExamSearch';
 import { SITE, waLink, type Lang } from './site';
 import { T } from './i18n';
-import { SEDES, CONVENIOS, FAQS, DOM_STEPS, REF_STEPS, PROCESSING, mapsUrl, type Sede } from './data';
+import { SEDES, CONVENIOS, FAQS, DOM_STEPS, REF_STEPS, PROCESSING, SOON_SEDE, mapsUrl, type Sede } from './data';
 import { allExams, examBySlug, type Exam } from './exams';
 import { posts, type Post } from './blog';
 
@@ -144,6 +144,24 @@ export function SedeGrid({ lang, skip, h = 'h3' }: { lang: Lang; skip?: string; 
           </div>
         </li>
       ))}
+      {!skip && (
+        <li className="card soon-card overflow-hidden" aria-label={`${SOON_SEDE.name} — ${SOON_SEDE.label[lang]}`}>
+          <div className="soon-media flex h-44 w-full items-center justify-center">
+            <I.MapPin size={44} className="soon-pin" aria-hidden />
+          </div>
+          <div className="p-5">
+            <div className="flex items-center gap-3">
+              <H className="text-xl font-medium">{SOON_SEDE.name}</H>
+              <span className="soon-badge">{SOON_SEDE.label[lang]}</span>
+            </div>
+            <p className="mt-1 flex gap-2 text-sm text-on-variant"><I.MapPin size={16} className="mt-0.5 shrink-0" aria-hidden />{SOON_SEDE.city}</p>
+            <p className="mt-1 text-sm text-on-variant">{SOON_SEDE.text[lang]}</p>
+            <div className="mt-4">
+              <a href={waLink(lang === 'es' ? 'Hola, quiero que me avisen cuando abra la sede de BioReferencia en Pereira.' : 'Hello, please let me know when the BioReferencia Pereira site opens.')} target="_blank" rel="noopener" data-track="whatsapp_click" data-place="sede_pereira_soon" className="soon-link rounded-full bg-surface-high px-4 py-2 text-sm">{SOON_SEDE.note[lang]}</a>
+            </div>
+          </div>
+        </li>
+      )}
     </ul>
   );
 }

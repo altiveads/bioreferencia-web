@@ -39,7 +39,7 @@ export function Footer({ lang }: { lang: Lang }) {
           <h2 className="font-medium mb-3">{t.footer.contact}</h2>
           <ul className="space-y-2 text-sm text-on-variant">
             <li><a href={`tel:${SITE.tel}`} className="hover:text-primary">{SITE.telDisplay}</a></li>
-            <li><a href={`https://wa.me/${SITE.wa}`} className="hover:text-primary" target="_blank" rel="noopener">WhatsApp {SITE.waDisplay}</a></li>
+            <li><a href={`https://wa.me/${SITE.wa}`} className="hover:text-primary" target="_blank" rel="noopener">WhatsApp</a></li>
           </ul>
           <h2 className="font-medium mt-6 mb-3">{t.footer.follow}</h2>
           <ul className="flex flex-wrap gap-x-4 gap-y-2 text-sm text-on-variant">

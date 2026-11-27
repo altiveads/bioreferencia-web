@@ -29,7 +29,7 @@ export function Header({ lang, path }: { lang: Lang; path: string }) {
         <nav aria-label="Principal" className="hidden xl:flex items-center gap-1 px-2 py-1.5 rounded-full bg-white/[0.06]">
           {nav.map((n) => (
             <Link key={n.key} href={n.href} aria-current={top === n.key ? 'page' : undefined}
-              className={`px-3.5 py-2 rounded-full text-[15px] whitespace-nowrap transition-colors ${top === n.key ? 'bg-white/15 text-on-surface font-medium' : 'text-on-variant hover:text-on-surface hover:bg-white/10'}`}>{n.label}</Link>
+              className={`px-2.5 2xl:px-3.5 py-2 rounded-full text-[14px] 2xl:text-[15px] whitespace-nowrap transition-colors ${top === n.key ? 'bg-white/15 text-on-surface font-medium' : 'text-on-variant hover:text-on-surface hover:bg-white/10'}`}>{n.label}</Link>
           ))}
         </nav>
         <div className="flex items-center gap-2">
@@ -38,7 +38,7 @@ export function Header({ lang, path }: { lang: Lang; path: string }) {
             <I.Languages size={16} aria-hidden /> {t.lang_short}
           </Link>
           <a href={waLink(lang === 'es' ? 'Hola, quiero información sobre mis exámenes.' : 'Hello, I would like information about my tests.')} target="_blank" rel="noopener" data-track="whatsapp_click" data-place="header"
-            className="hidden sm:inline-flex items-center gap-2 rounded-full px-5 h-10 font-semibold" style={{ background: '#25D366', color: '#0b1f14' }}>
+            className="hidden sm:inline-flex items-center gap-2 rounded-full px-4 2xl:px-5 h-10 font-semibold" style={{ background: '#25D366', color: '#0b1f14' }}>
             <I.MessageCircle size={18} aria-hidden /> {t.wa_short}
           </a>
           <MobileMenu items={nav.map((n) => ({ href: n.href, label: n.label, active: top === n.key }))} menu={t.menu} close={t.close} call={`${t.call_short} ${SITE.telDisplay}`} tel={SITE.tel} />

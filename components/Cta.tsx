@@ -9,7 +9,7 @@ export function WaButton({ lang, msg, label, place, sub = true }: { lang: Lang; 
       <I.MessageCircle size={24} aria-hidden />
       <span className="flex flex-col items-start leading-tight text-left">
         <span>{label || t.wa}</span>
-        {sub && <span className="text-[12px] font-medium opacity-80">{SITE.waDisplay} · {t.online}</span>}
+        {sub && <span className="text-[12px] font-medium opacity-80">{t.online}</span>}
       </span>
     </a>
   );
