@@ -7,6 +7,7 @@ export const SITE = {
   telDisplay: '(604) 448 00 02',
   gtm: process.env.NEXT_PUBLIC_GTM_ID || '',
   results: 'https://resultadosbioreferencia.atheneasoluciones.com/Resultados',
+  pay: 'https://www.bioreferencia.pagoagil.co/',
   social: {
     facebook: 'https://www.facebook.com/LaboratorioBioReferencia/',
     instagram: 'https://www.instagram.com/bioreferencialab',

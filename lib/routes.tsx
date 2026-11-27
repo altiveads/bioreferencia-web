@@ -6,8 +6,9 @@ import { allExams, examBySlug } from './exams';
 import { Shell } from '@/components/Shell';
 import { Home, ExamsHub, ExamPage, Domicilio, Convenios, SedesIndex, SedePage, Reference, Results, FaqPage, About, NotFound, BlogIndex, BlogPost, Elite, Chequeos } from './pages';
 import { posts, postBySlug } from './blog';
+import { Politicas, Pqrsf, Trabaja, Innovacion, KitWellness, NEW_META } from './pages2';
 
-const STATIC = ['', 'examenes', 'a-domicilio', 'convenios', 'sedes', 'laboratorio-de-referencia', 'resultados', 'preguntas-frecuentes', 'quienes-somos', 'blog', 'usuario-elite', 'chequeos-ejecutivos'];
+const STATIC = ['', 'examenes', 'a-domicilio', 'convenios', 'sedes', 'laboratorio-de-referencia', 'resultados', 'preguntas-frecuentes', 'quienes-somos', 'blog', 'usuario-elite', 'chequeos-ejecutivos', 'politicas', 'pqrsf', 'trabaja-con-nosotros', 'innovacion-y-desarrollo', 'kit-wellness'];
 
 export function allPaths(): string[] {
   return [...STATIC, ...SEDES.map((s) => `sedes/${s.slug}`), ...allExams().map((e) => `examenes/${e.slug}`), ...posts().map((x) => `blog/${x.slug}`)];
@@ -37,6 +38,7 @@ export function meta(lang: Lang, path: string): Metadata {
   else if (a === 'blog' && b) { const x = postBySlug(b)!; title = `${x.title} | BioReferencia`; description = x.desc; }
   else if (path === 'usuario-elite') ({ title, desc: description } = t.elite as any);
   else if (path === 'chequeos-ejecutivos') ({ title, desc: description } = t.chk as any);
+  else if (NEW_META[path]) [title, description] = NEW_META[path][lang];
   const loc = (l: Lang) => `${SITE.url}${l === 'en' ? '/en' : ''}${path ? '/' + path : ''}/`;
   return {
     metadataBase: new URL(SITE.url), title, description,
@@ -65,6 +67,11 @@ export function render(lang: Lang, path: string) {
   else if (a === 'blog' && b) body = <BlogPost lang={lang} post={postBySlug(b)!} />;
   else if (path === 'usuario-elite') body = <Elite lang={lang} />;
   else if (path === 'chequeos-ejecutivos') body = <Chequeos lang={lang} />;
+  else if (path === 'politicas') body = <Politicas lang={lang} />;
+  else if (path === 'pqrsf') body = <Pqrsf lang={lang} />;
+  else if (path === 'trabaja-con-nosotros') body = <Trabaja lang={lang} />;
+  else if (path === 'innovacion-y-desarrollo') body = <Innovacion lang={lang} />;
+  else if (path === 'kit-wellness') body = <KitWellness lang={lang} />;
   else body = <NotFound lang={lang} />;
   return <Shell lang={lang} path={path} stickyMsg={stickyMsg(lang, path)}>{body}</Shell>;
 }
